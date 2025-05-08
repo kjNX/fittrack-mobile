@@ -57,6 +57,7 @@ dependencies {
 
     // ThreeTenABP para compatibilidad con java.time en API < 26
     implementation(libs.threetenabp)
+    implementation(libs.androidx.ui.text.google.fonts)
 
 
 
