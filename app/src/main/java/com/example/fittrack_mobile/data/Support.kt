@@ -19,7 +19,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.automirrored.filled.Send
-import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.KeyboardVoice
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -41,6 +40,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.fittrack_mobile.FitCard
 import com.example.fittrack_mobile.R
+import com.example.fittrack_mobile.TabbedLayout
 import com.example.fittrack_mobile.model.Message
 import com.example.fittrack_mobile.model.Section
 import com.example.fittrack_mobile.ui.theme.FittrackmobileTheme
@@ -106,9 +106,13 @@ fun MessageBar(modifier: Modifier = Modifier) {
         Button(onClick = {}) {
             Icon(imageVector = Icons.Default.KeyboardVoice, contentDescription = "Voice message")
         }
-        TextField(value = message, onValueChange = {message = it}, modifier = Modifier
-            .weight(1f)
-            .padding(horizontal = 8.dp))
+        TextField(
+            value = message,
+            onValueChange = { message = it },
+            modifier = Modifier
+                .weight(1f)
+                .padding(horizontal = 8.dp)
+        )
         Button(onClick = {}) {
             Icon(imageVector = Icons.AutoMirrored.Filled.Send, contentDescription = "Send message")
         }
@@ -117,7 +121,7 @@ fun MessageBar(modifier: Modifier = Modifier) {
 
 @Composable
 fun BotMessaging(modifier: Modifier = Modifier) {
-    Column(modifier = modifier.fillMaxSize()) {
+    Column(modifier = modifier.fillMaxSize().padding(16.dp)) {
         MessageLog(listOf(Message("Hello!")), Modifier.weight(10f))
         MessageBar()
     }
@@ -166,10 +170,10 @@ fun ResourceCard(title: String, description: String, modifier: Modifier = Modifi
 
 @Composable
 fun Contacts(modifier: Modifier = Modifier) {
-    Column {
-        FitCard(title = "Hablar con un experto", modifier = modifier) {
+    Column(modifier.fillMaxSize().padding(16.dp)) {
+        FitCard(title = "Hablar con un experto") {
             ContactCard(Contact(R.drawable.ic_launcher_background, "John Doe", "Expert"))
-            Button(onClick = {}) {
+            Button(onClick = {}, shape = MaterialTheme.shapes.medium) {
                 Text(
                     text = "Reservar cita",
                     textAlign = TextAlign.Center,
@@ -177,6 +181,7 @@ fun Contacts(modifier: Modifier = Modifier) {
                 )
             }
         }
+        Spacer(Modifier.height(16.dp))
         FitCard(title = "Recursos rápidos") {
             ResourceCard(
                 title = "Preguntas frecuentes sobre nutrición",
@@ -196,6 +201,6 @@ val supportSection = Section(
 @Composable
 private fun Preview() {
     FittrackmobileTheme {
-        Contacts()
+        TabbedLayout(supportSection)
     }
 }

@@ -13,6 +13,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -66,7 +68,9 @@ fun CaloriesCard() {
     FitCard(title = "Calorías de hoy") {
         Column(modifier = Modifier.padding(top = 8.dp)) {
             Text("1450 de 2150 kcal", style = MaterialTheme.typography.bodyLarge)
-            LinearProgressIndicator(progress = 1450f / 2150f, modifier = Modifier.fillMaxWidth().padding(top = 8.dp))
+            LinearProgressIndicator(progress = 1450f / 2150f, modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 8.dp))
         }
     }
 }
@@ -96,7 +100,9 @@ fun WaterCard() {
     FitCard(title = "Agua") {
         Column(modifier = Modifier.padding(top = 8.dp)) {
             Text("1200ml / 2500ml", style = MaterialTheme.typography.bodyLarge)
-            LinearProgressIndicator(progress = 1200f / 2500f, modifier = Modifier.fillMaxWidth().padding(top = 8.dp))
+            LinearProgressIndicator(progress = 1200f / 2500f, modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 8.dp))
         }
     }
 }
@@ -106,7 +112,9 @@ fun StepsCard() {
     FitCard(title = "Pasos") {
         Column(modifier = Modifier.padding(top = 8.dp)) {
             Text("6,500 / 10,000", style = MaterialTheme.typography.bodyLarge)
-            LinearProgressIndicator(progress = 6500f / 10000f, modifier = Modifier.fillMaxWidth().padding(top = 8.dp))
+            LinearProgressIndicator(progress = 6500f / 10000f, modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 8.dp))
         }
     }
 }
@@ -132,4 +140,10 @@ fun TrendsCard() {
     FitCard(title = "Tendencias") {
         Text("Promedio: 1650 kcal", style = MaterialTheme.typography.bodyLarge)
     }
+}
+
+@Preview
+@Composable
+private fun Preview() {
+    HomeScreen(navController = NavController(LocalContext.current))
 }
