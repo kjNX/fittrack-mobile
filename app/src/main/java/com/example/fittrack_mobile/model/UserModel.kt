@@ -5,8 +5,7 @@ data class UserModel (
     val email: String,
     val uid: String
 )
-{
 
 
 
-}
+
