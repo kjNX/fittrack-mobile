@@ -1,5 +1,6 @@
 package com.example.fittrack_mobile
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -11,6 +12,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
@@ -44,7 +46,7 @@ fun HomeScreen(navController: NavController) {
                         .verticalScroll(rememberScrollState())
                         .padding(16.dp)
                 ) {
-                    Header()
+                    Title(modifier = Modifier.fillMaxWidth())
                     Spacer(modifier = Modifier.height(16.dp))
                     CaloriesCard()
                     Spacer(modifier = Modifier.height(16.dp))
@@ -79,6 +81,38 @@ fun FitCard(
             Text(text = title, style = MaterialTheme.typography.titleMedium)
             Spacer(modifier = Modifier.height(8.dp))
             content()
+        }
+    }
+}
+
+@Composable
+fun Title(modifier: Modifier = Modifier) {
+    Row(
+        horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = modifier
+    ) {
+        Column {
+            Text(
+                text = "¡Hola, Ana!",
+                style = MaterialTheme.typography.titleLarge
+            )
+            Text(
+                text = "Jueves, 25 de abril",
+                style = MaterialTheme.typography.labelMedium
+            )
+        }
+        Button(
+            onClick = {},
+            shape = MaterialTheme.shapes.small,
+            border = BorderStroke(1.dp, Color.LightGray),
+            colors = ButtonColors(
+                Color.White,
+                Color.White,
+                Color.White,
+                Color.White
+            )
+        ) {
+            Text(text = "Ver informe", color = Color.DarkGray)
         }
     }
 }

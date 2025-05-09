@@ -137,7 +137,7 @@ fun AuthScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             Button(
-                onClick = { navController.navigate("start") },
+                onClick = { navController.navigate("home") },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xFF4CD964),
                     contentColor = Color.White

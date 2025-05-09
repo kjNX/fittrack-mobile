@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.fittrack_mobile"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -63,6 +63,7 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
 
+    implementation(libs.foundation.pager)
 
 
     testImplementation(libs.junit)

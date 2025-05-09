@@ -5,6 +5,7 @@ import com.example.fittrack_mobile.model.Activity
 import com.example.fittrack_mobile.model.Contact
 import com.example.fittrack_mobile.model.Dish
 import com.example.fittrack_mobile.model.Food
+import com.example.fittrack_mobile.model.OnboardingData
 import kotlin.time.Duration
 
 val activityList = listOf(
@@ -75,5 +76,24 @@ val contactList = listOf(
         image = R.drawable.ic_launcher_foreground,
         name = "Carlos Rodriguez",
         role = "Entrenador personal"
+    )
+)
+
+val onboardingList = listOf(
+    OnboardingData(
+        title = "Bienvenido a NutriHealth",
+        description = "Tu asistente personal para alcanzar tus objetivos de salud y fitness",
+        image = R.drawable.logo_nutrihealth
+    ),
+    OnboardingData(
+        title = "Seguimiento completo",
+        description = "Registra tu alimentación, actividad física y progreso en un solo lugar",
+        image = R.drawable.logo_nutrihealth
+    ),
+    OnboardingData(
+        title = "Personalizado para ti",
+        description = "Recibe recomendaciones adaptadas a tus objetivos y preferencias",
+        image = R.drawable.logo_nutrihealth
+
     )
 )

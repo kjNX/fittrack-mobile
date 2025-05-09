@@ -1,19 +1,17 @@
 package com.example.fittrack_mobile
 
 import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.content.pm.PackageManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.example.fittrack_mobile.ui.theme.FittrackmobileTheme
 import com.example.fittrack_mobile.navigation.AppNavGraph
+import com.example.fittrack_mobile.ui.theme.FittrackmobileTheme
 import com.jakewharton.threetenabp.AndroidThreeTen
 
 class MainActivity : ComponentActivity() {
