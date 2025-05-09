@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -15,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,6 +27,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.fittrack_mobile.model.Section
 import com.example.fittrack_mobile.ui.theme.FittrackmobileTheme
+import kotlinx.coroutines.launch
 
 @Composable
 fun FitCard(
@@ -122,14 +126,19 @@ fun TabbedHeader(
 
 @Composable
 fun TabbedLayout(section: Section, modifier: Modifier = Modifier) {
-    var selectedTabIndex by remember { mutableIntStateOf(0) }
+    val pagerState = rememberPagerState { section.tabsContent.size }
+    val coroutineScope = rememberCoroutineScope()
+    // var selectedTabIndex by remember { mutableIntStateOf(0) }
     Column(modifier = modifier) {
         TabbedHeader(
             section = section,
-            idx = selectedTabIndex,
-            onClick = { selectedTabIndex = it }
+            idx = pagerState.currentPage,
+            onClick = { coroutineScope.launch { pagerState.animateScrollToPage(it) } }
         )
-        section.tabsContent[selectedTabIndex]()
+        // section.tabsContent[selectedTabIndex]()
+        HorizontalPager(state = pagerState) { page ->
+            section.tabsContent[page]()
+        }
     }
 }
 
