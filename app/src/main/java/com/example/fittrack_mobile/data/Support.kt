@@ -24,6 +24,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -38,9 +39,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.fittrack_mobile.FitCard
 import com.example.fittrack_mobile.R
 import com.example.fittrack_mobile.TabbedLayout
+import com.example.fittrack_mobile.components.FittrackBottomBar
 import com.example.fittrack_mobile.model.Message
 import com.example.fittrack_mobile.model.Section
 import com.example.fittrack_mobile.ui.theme.FittrackmobileTheme
@@ -197,6 +200,28 @@ val supportSection = Section(
     tabsContent = listOf({ BotMessaging() }, { Contacts() })
 )
 
+@Composable
+fun ChatScreen(navController: NavController) {
+    FittrackmobileTheme {
+        Scaffold(
+            bottomBar = {
+                FittrackBottomBar(selectedIndex = 2, onItemSelected = { index ->
+                    when (index) {
+                        0 -> navController.navigate("home")
+                        1 -> navController.navigate("food")
+                        2 -> navController.navigate("chat")     // Actual
+                        3 -> navController.navigate("activity")
+                        4 -> navController.navigate("profile")  // Futuro
+                    }
+                })
+            }
+        ) { padding ->
+            Column(modifier = Modifier.padding(padding)) {
+                TabbedLayout(section = supportSection)
+            }
+        }
+    }
+}
 @Preview(showBackground = true)
 @Composable
 private fun Preview() {

@@ -52,7 +52,7 @@ dependencies {
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.datetime)
-
+    implementation(libs.androidx.activity)
 
 
     // ThreeTenABP para compatibilidad con java.time en API < 26

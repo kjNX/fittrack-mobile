@@ -26,6 +26,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -37,8 +38,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntRect
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.fittrack_mobile.R
 import com.example.fittrack_mobile.TabbedLayout
+import com.example.fittrack_mobile.components.FittrackBottomBar
 import com.example.fittrack_mobile.model.Activity
 import com.example.fittrack_mobile.model.Section
 import com.example.fittrack_mobile.ui.theme.FittrackmobileTheme
@@ -186,6 +189,28 @@ val physicalSection = Section(
         { Training() }
     )
 )
+@Composable
+fun ActivityScreen(navController: NavController) {
+    FittrackmobileTheme {
+        Scaffold(
+            bottomBar = {
+                FittrackBottomBar(selectedIndex = 3, onItemSelected = { index ->
+                    when (index) {
+                        0 -> navController.navigate("home")
+                        1 -> navController.navigate("food")
+                        2 -> navController.navigate("chat")
+                        3 -> navController.navigate("activity") // esta misma
+                        4 -> navController.navigate("profile")
+                    }
+                })
+            }
+        ) { padding ->
+            Column(modifier = Modifier.padding(padding)) {
+                TabbedLayout(section = physicalSection)
+            }
+        }
+    }
+}
 
 @Preview(showSystemUi = true)
 @Composable

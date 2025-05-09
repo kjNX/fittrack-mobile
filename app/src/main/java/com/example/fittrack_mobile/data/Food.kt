@@ -16,6 +16,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -28,10 +29,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.fittrack_mobile.TabbedLayout
+import com.example.fittrack_mobile.components.FittrackBottomBar
 import com.example.fittrack_mobile.model.Dish
 import com.example.fittrack_mobile.model.Food
 import com.example.fittrack_mobile.model.Section
+import com.example.fittrack_mobile.ui.theme.FittrackmobileTheme
 
 @Composable
 fun ScanDisplay(modifier: Modifier = Modifier) {
@@ -114,8 +118,26 @@ val foodSection = Section(
     tabsContent = listOf({ ScanDisplay() }, { ManualDisplay() })
 )
 
-@Preview(showSystemUi = true)
 @Composable
-private fun Preview() {
-    TabbedLayout(foodSection)
+fun FoodScreen(navController: NavController) {
+    FittrackmobileTheme {
+        Scaffold(
+            bottomBar = {
+                FittrackBottomBar(selectedIndex = 1, onItemSelected = { index ->
+                    when (index) {
+                        0 -> navController.navigate("home")
+                        1 -> navController.navigate("food") // ya estás en food
+                        2 -> navController.navigate("chat")
+                        3 -> navController.navigate("activity") // esta misma
+                        4 -> navController.navigate("profile")
+                    }
+                })
+            }
+        ) { padding ->
+            Column(modifier = Modifier.padding(padding)) {
+                TabbedLayout(section = foodSection)
+            }
+        }
+    }
 }
+
