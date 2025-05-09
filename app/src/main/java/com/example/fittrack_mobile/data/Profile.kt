@@ -36,7 +36,7 @@ fun ProfileScreen(navController: NavController) {
     val user = UserProfile(
         name = "Ana García",
         email = "ana.garcia@ejemplo.com",
-        avatarRes = R.drawable.avatar_default,
+        avatarRes = R.drawable.ic_launcher_foreground,
         currentWeight = 68,
         goalWeight = 62,
         progressPercent = 75

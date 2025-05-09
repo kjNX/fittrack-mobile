@@ -1,4 +1,4 @@
-package com.example.fittrack_mobile.data
+package com.example.fittrack_mobile.model
 
 import androidx.annotation.DrawableRes
 

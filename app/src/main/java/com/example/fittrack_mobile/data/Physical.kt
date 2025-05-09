@@ -118,7 +118,7 @@ fun Tracking() {
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp)
+                        .padding(bottom = 16.dp)
                 ) {
                     Column {
                         Text(text = "01:30:20", style = MaterialTheme.typography.headlineLarge)
@@ -156,25 +156,8 @@ fun Tracking() {
 }
 
 @Composable
-fun Training() {
-    val activityList = listOf(
-        Activity(
-            title = "Carrera 5k",
-            description = "Entrenamiento para principiantes",
-            time = Duration.ZERO
-        ),
-        Activity(
-            title = "Carrera 10k",
-            description = "Entrenamiento para principiantes",
-            time = Duration.ZERO
-        ),
-        Activity(
-            title = "Carrera 15k",
-            description = "Entrenamiento para principiantes",
-            time = Duration.ZERO
-        )
-    )
-    LazyColumn(modifier = Modifier.padding(16.dp)) {
+fun Training(activityList: List<Activity>, modifier: Modifier = Modifier) {
+    LazyColumn(modifier = modifier.padding(16.dp)) {
         items(activityList) { i ->
             ActivityCard(i, modifier = Modifier.padding(vertical = 8.dp))
         }
@@ -186,7 +169,7 @@ val physicalSection = Section(
     tabsTitle = listOf("Seguimiento", "Entrenamiento"),
     tabsContent = listOf(
         { Tracking() },
-        { Training() }
+        { Training(activityList) }
     )
 )
 @Composable

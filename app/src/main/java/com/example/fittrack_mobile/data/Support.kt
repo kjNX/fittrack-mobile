@@ -44,6 +44,7 @@ import com.example.fittrack_mobile.FitCard
 import com.example.fittrack_mobile.R
 import com.example.fittrack_mobile.TabbedLayout
 import com.example.fittrack_mobile.components.FittrackBottomBar
+import com.example.fittrack_mobile.model.Contact
 import com.example.fittrack_mobile.model.Message
 import com.example.fittrack_mobile.model.Section
 import com.example.fittrack_mobile.ui.theme.FittrackmobileTheme
@@ -158,7 +159,7 @@ fun ContactCard(contact: Contact, modifier: Modifier = Modifier) {
 fun ResourceCard(title: String, description: String, modifier: Modifier = Modifier) {
     Card(modifier = modifier) {
         Row(
-            modifier = Modifier.padding(8.dp),
+            modifier = Modifier.fillMaxWidth().padding(8.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
@@ -172,10 +173,10 @@ fun ResourceCard(title: String, description: String, modifier: Modifier = Modifi
 }
 
 @Composable
-fun Contacts(modifier: Modifier = Modifier) {
+fun Contacts(contactList: List<Contact>, modifier: Modifier = Modifier) {
     Column(modifier.fillMaxSize().padding(16.dp)) {
         FitCard(title = "Hablar con un experto") {
-            ContactCard(Contact(R.drawable.ic_launcher_background, "John Doe", "Expert"))
+            for(i in contactList) ContactCard(contact = i)
             Button(onClick = {}, shape = MaterialTheme.shapes.medium) {
                 Text(
                     text = "Reservar cita",
@@ -190,6 +191,14 @@ fun Contacts(modifier: Modifier = Modifier) {
                 title = "Preguntas frecuentes sobre nutrición",
                 description = "Respuestas a las dudas más comunes"
             )
+            ResourceCard(
+                title = "Guía de macronutrientes",
+                description = "Aprende a balancear tu dieta"
+            )
+            ResourceCard(
+                title = "Videos de ejercicios básicos",
+                description = "Rutinas para principiantes"
+            )
         }
     }
 }
@@ -197,7 +206,7 @@ fun Contacts(modifier: Modifier = Modifier) {
 val supportSection = Section(
     title = "Ayuda y soporte",
     tabsTitle = listOf("Chatbot IA", "Especialista"),
-    tabsContent = listOf({ BotMessaging() }, { Contacts() })
+    tabsContent = listOf({ BotMessaging() }, { Contacts(contactList) })
 )
 
 @Composable
