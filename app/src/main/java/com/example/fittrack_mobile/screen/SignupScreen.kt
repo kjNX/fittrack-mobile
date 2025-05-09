@@ -40,6 +40,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.fittrack_mobile.AppUtil
@@ -55,6 +56,7 @@ fun SignupScreen(
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var context = LocalContext.current
+    val keyboardController = LocalSoftwareKeyboardController.current // Para ocultar el teclado
 
     Column(
         modifier = modifier
@@ -160,9 +162,13 @@ fun SignupScreen(
             Button(
                 onClick = { authViewModel.signup(name,email,password){succes,errorMessage->
                     if(succes){
-
+                        AppUtil.showToast(context, "Cuenta creada con éxito. Inicia sesión.")
+                        name = ""
+                        email = ""
+                        password = ""
+                        navController.navigate("auth") // Regresar al login
                     }else{
-                       AppUtil.showToast(context,errorMessage?:"Something went wrong")
+                       AppUtil.showToast(context,errorMessage?:"Ocurrió un error.")
                     }
                 } },
                 colors = ButtonDefaults.buttonColors(

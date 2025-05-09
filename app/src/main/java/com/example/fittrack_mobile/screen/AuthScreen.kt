@@ -39,6 +39,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.fittrack_mobile.AppUtil
+import com.example.fittrack_mobile.viewmodel.AuthViewModel
 
 @Composable
 fun AuthScreen(
@@ -47,6 +51,8 @@ fun AuthScreen(
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    val context = LocalContext.current
+    val authViewModel: AuthViewModel = viewModel()
 
     Column(
         modifier = modifier
@@ -137,7 +143,15 @@ fun AuthScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             Button(
-                onClick = { navController.navigate("home") },
+                onClick = {
+                    authViewModel.login(email, password) { success, message ->
+                        if (success) {
+                            navController.navigate("home")
+                        } else {
+                            AppUtil.showToast(context, message)
+                        }
+                    }
+                },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xFF4CD964),
                     contentColor = Color.White
