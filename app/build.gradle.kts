@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -58,6 +59,9 @@ dependencies {
     // ThreeTenABP para compatibilidad con java.time en API < 26
     implementation(libs.threetenabp)
     implementation(libs.androidx.ui.text.google.fonts)
+    implementation(libs.androidx.navigation.runtime.android)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
 
 
 
