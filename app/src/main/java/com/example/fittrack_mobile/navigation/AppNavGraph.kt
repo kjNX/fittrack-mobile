@@ -11,6 +11,9 @@ import com.example.fittrack_mobile.data.FoodScreen
 import com.example.fittrack_mobile.reminders.ReminderDetailScreen
 import com.example.fittrack_mobile.data.ActivityScreen
 import com.example.fittrack_mobile.data.ChatScreen
+import com.example.fittrack_mobile.data.ProfileScreen
+
+
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -32,6 +35,11 @@ fun AppNavGraph(navController: NavHostController) {
         composable("chat") {
             ChatScreen(navController)
         }
+
+        composable("profile") {
+            ProfileScreen(navController)
+        }
+
 
         // Puedes seguir agregando más pantallas como:
         // composable("chat") { ChatScreen(navController) }
